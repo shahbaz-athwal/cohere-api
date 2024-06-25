@@ -1,8 +1,9 @@
 import express, { Request, Response } from 'express';
 import { CohereClient } from 'cohere-ai';
+import 'dotenv/config'
 
 const cohere = new CohereClient({
-    token: "sKeMhpFoclPeJx7M4NlIgzWiCDp96ssQl9QyZrcQ" || process.env.COHERE_API
+    token: process.env.COHERE_API
 })
 
 const app = express();
@@ -29,7 +30,7 @@ app.post('/generate', async (req: Request, res: Response) => {
       returnLikelihoods: 'NONE'
     });
 
-    const generatedName = response.generations[0].text.trim();
+    const generatedName = response.generations[0].text;
     res.send({ projectName: generatedName });
   } catch (error) {
     console.error('Error generating project name:', error);
