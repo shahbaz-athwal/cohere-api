@@ -1,0 +1,1 @@
+- This is simple express app for generating project names using **cohere's api**
